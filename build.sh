@@ -41,6 +41,9 @@ buildah run $working_container apk add --no-cache \
 buildah run $working_container curl -L "$PLANTUML_DOWNLOAD_URL" \
     -o /usr/local/lib/plantuml.jar
 
+# add a dedicated directory for bind mounts
+buildah run $working_container mkdir /plantuml
+
 # set plantuml as the entrypoint
 buildah config --entrypoint \
     '["java", "-jar", "/usr/local/lib/plantuml.jar"]' \
