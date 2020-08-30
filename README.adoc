@@ -1,0 +1,28 @@
+= PLANTUML-CLI-CONTAINER
+
+Generates an https://opencontainers.org/[OCI compliant container image] for running the https://plantuml.com/command-line[PlantUML command line].
+
+== Dependencies
+
+* Unix shell
+* https://buildah.io/[Buildah]
+
+== How to build
+
+....
+git clone https://github.com/DanielDavis5/plantuml-cli-container
+cd plantuml-cli-container
+sh build.sh
+....
+
+== Examples
+
+=== Using I/O redirection
+....
+cat diagram.puml | podman run -i --rm localhost/plantuml-cli -p -tsvg > diagram.svg
+....
+
+=== Using bind mounts
+....
+podman run --mount=type=bind,src=diagram.puml,dst=/diagram.puml -v ./images:/plantuml --rm localhost/plantuml-cli /diagram.puml -tpng -o /plantuml
+....
