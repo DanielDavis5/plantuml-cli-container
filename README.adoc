@@ -18,11 +18,19 @@ sh build.sh
 == Examples
 
 === Using I/O redirection
+
 ....
 cat diagram.puml | podman run -i --rm localhost/plantuml-cli -p -tsvg > diagram.svg
 ....
 
 === Using bind mounts
+
 ....
 podman run --mount=type=bind,src=diagram.puml,dst=/diagram.puml -v ./images:/plantuml --rm localhost/plantuml-cli /diagram.puml -tpng -o /plantuml
+....
+
+=== Using the public repository
+
+....
+docker run --rm danielmauricedavis/plantuml-cli -version
 ....
